@@ -14,7 +14,13 @@ def handle_text(output, input_shape):
 
 def handle_car(output, input_shape):
 
-    return None
+    color = output['color'].flatten()
+    car_type = output['type'].flatten()
+
+    color_class = np.argmax(color)
+    type_class = np.argmax(car_type)
+
+    return color_class, type_class
 
 
 def handle_output(model_type):

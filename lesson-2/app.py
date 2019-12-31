@@ -24,7 +24,7 @@ def get_args():
 
     # add required and optional groups
 
-    parser.action_groups.pop()
+    parser._action_groups.pop()
     required = parser.add_argument_group('required arguments')
     optional = parser.add_argument_group('optional arguments')
 
@@ -89,7 +89,10 @@ def create_output_image(model_type, image, output):
         scaler = max(int(image.shape[0] / 1000), 1)
 
         # write the text of color and type onto the image
-        image = cv2.putText(image, "Color: {}, Type: {}".format(color, car_type),)
+        image = cv2.putText(image,
+                            "Color: {}, Type: {}".format(color, car_type),
+                            (50 * scaler, 100 * scaler), cv2.FONT_HERSHEY_SIMPLEX,
+                            2 * scaler, (255, 255, 255), 3 * scaler)
 
         return image
 
@@ -108,25 +111,41 @@ def perform_inference(args):
     image = cv2.imread(args.i)
 
     # preprocess the input image
-    preprocessed_image = None
+    preprocessed_image = preprocessing(image, h, w)
 
     # perform synchronous inference on the image
     inference_network.sync_inference(preprocessed_image)
 
     # obtain the output of the inference request
     output = inference_network.extract_output()
-
-    proprocessed_output = None
+    process_func = handle_output(args.t)
+    processed_output = process_func(output, image.shape)
 
     # create an output image based on network
-    output_image = create_output_image(args.t, image, preprocessed_output)
+    try:
+        output_image = create_output_image(args.t, image, processed_output)
+
+        try:
+            cv2.imwrite("outputs/{}-output.jpg".format(args.t), output_image)
+            # cv2.imwrite('fha.jpg',output_image)
+            # cv2.imshow(output_image)
+        except:
+            print('Cannot write image')
+        print('Success')
+    except:
+        output_image = image
+        print('Error')
 
     # save down the resulting image
-    cv2.imwrite("outputs/{}-output.png".format(args.t), output_image)
 
 
 def main():
     args = get_args()
+    perform_inference(args)
+
+
+if __name__ == "__main__":
+    main()
 
 
 
