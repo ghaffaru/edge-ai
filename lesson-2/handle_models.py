@@ -4,12 +4,32 @@ import numpy as np
 
 def handle_pose(output, input_shape):
 
-    return None
+    heatmaps = output['Mconv7_stage2_L2']
+    # print(pose.shape)
+
+    # resize the heatmap back to the size of the input
+    out_heatmap = np.zeros([heatmaps.shape[1], input_shape[0], input_shape[1]])
+
+    # iterate through and resize each heatmap
+    for h in range(len(heatmaps[0])):
+        out_heatmap[h] = cv2.resize(heatmaps[0][h], input_shape[0:2][::-1])
+
+    return out_heatmap
 
 
 def handle_text(output, input_shape):
 
-    return None
+    # extract only the first blob output (text/no text classification)
+    text_classes = output['model/segm_logits/add']
+
+    # resize this output back to the size of the input
+    out_text = np.empty([text_classes.shape[1], input_shape[0], input_shape[1]])
+
+    for t in range(len(text_classes[0])):
+        out_text[t] = cv2.resize(text_classes[0][t], input_shape[0:2][::-1])
+
+    # print(output.keys())
+    return out_text
 
 
 def handle_car(output, input_shape):
