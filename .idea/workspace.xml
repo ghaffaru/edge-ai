@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fbf980bd-a70c-455d-8cf0-37bad9af4c57" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lesson-4/helpers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lesson-4/inference.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lesson-4/project/app.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lesson-4/project/inference.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lesson-4/project/test_video.mp4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
