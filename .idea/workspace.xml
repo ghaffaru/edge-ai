@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fbf980bd-a70c-455d-8cf0-37bad9af4c57" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lesson-5/handle_input_stream.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lesson-5/handle_input_stream.py" beforeDir="false" afterPath="$PROJECT_DIR$/lesson-5/handle_input_stream.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
